@@ -64,7 +64,7 @@ Ketentuan penilaian:
 | `mapel` | Menyimpan data mata pelajaran. |
 | `nilai` | Menyimpan nilai Tugas, UTS, UAS, nilai akhir, dan status kelulusan. |
 
-## ⚙️ Instalasi
+## Instalasi
 
 1. Clone repository:
 
