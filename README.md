@@ -1,59 +1,142 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# RaporKu — Aplikasi E-Rapor Berbasis Web
 
-## About Laravel
+RaporKu adalah aplikasi e-rapor berbasis web untuk mempermudah pengelolaan nilai akademik siswa SMA. Aplikasi ini membantu proses pencatatan nilai, perhitungan nilai akhir otomatis, penentuan status kelulusan, serta pembuatan laporan nilai secara efektif dan sistematis.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Autentikasi Pengguna:** Login dan logout berdasarkan hak akses pengguna.
+- **Manajemen Siswa:** Mengelola data siswa, NIS, nama, dan kelas.
+- **Manajemen Guru:** Mengelola data guru dan mata pelajaran yang diampu.
+- **Input Nilai:** Memasukkan nilai Tugas, UTS, dan UAS.
+- **Perhitungan Otomatis:** Menghitung nilai akhir siswa secara otomatis.
+- **Validasi Nilai:** Memastikan nilai berada pada rentang 0–100.
+- **Status Kelulusan:** Menentukan status Lulus atau Tidak Lulus.
+- **Laporan Nilai:** Menampilkan rekap nilai berdasarkan siswa, kelas, dan mata pelajaran.
+- **Cetak dan Ekspor:** Mendukung kebutuhan pencetakan atau ekspor laporan nilai sesuai implementasi aplikasi.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Hak Akses Pengguna
 
-## Learning Laravel
+| Role | Hak Akses |
+|---|---|
+| Admin | Mengelola data guru dan siswa, menginput nilai, serta melihat dan mencetak laporan nilai. |
+| Guru | Menginput nilai dan melihat rekap nilai siswa berdasarkan kelas dan mata pelajaran. |
+| Siswa | Melihat nilai Tugas, UTS, UAS, nilai akhir, dan status kelulusan pribadi. |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Rumus Perhitungan Nilai
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Nilai akhir dihitung menggunakan rumus:
 
-## Laravel Sponsors
+```text
+Nilai Akhir = (30% × Tugas) + (30% × UTS) + (40% × UAS)
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Ketentuan penilaian:
 
-### Premium Partners
+- Nilai Tugas, UTS, dan UAS berada pada rentang 0–100.
+- **Lulus:** Nilai akhir ≥ 70.
+- **Tidak Lulus:** Nilai akhir < 70.
+- Status kelulusan ditentukan untuk setiap mata pelajaran.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Teknologi yang Digunakan
 
-## Contributing
+- **Backend:** PHP dan Laravel
+- **Frontend:** HTML, Tailwind CSS, JavaScript Vanilla, dan/atau Alpine.js
+- **Database:** MySQL
+- **Web Server:** Laragon (Nginx)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Persyaratan Sistem
 
-## Code of Conduct
+- PHP 8.2 atau lebih baru
+- Laravel 11 atau lebih baru
+- MySQL
+- Composer
+- Browser web versi terbaru
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Struktur Database
 
-## Security Vulnerabilities
+| Tabel | Deskripsi |
+|---|---|
+| `users` | Menyimpan akun pengguna dan role. |
+| `admin` | Menyimpan data Admin. |
+| `guru` | Menyimpan data guru dan mata pelajaran. |
+| `siswa` | Menyimpan data siswa, NIS, nama, dan kelas. |
+| `mapel` | Menyimpan data mata pelajaran. |
+| `nilai` | Menyimpan nilai Tugas, UTS, UAS, nilai akhir, dan status kelulusan. |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## ⚙️ Instalasi
 
-## License
+1. Clone repository:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   git clone https://github.com/Culaa1125/raporku
+   ```
+
+2. Masuk ke direktori proyek:
+
+   ```bash
+   cd <NAMA-DIREKTORI-PROYEK>
+   ```
+
+3. Instal dependensi:
+
+   ```bash
+   composer install
+   ```
+
+4. Salin file `.env.example` menjadi `.env`.
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Pada Windows, file dapat disalin secara manual.
+
+5. Buat application key:
+
+   ```bash
+   php artisan key:generate
+   ```
+
+6. Buat database MySQL dan sesuaikan konfigurasi database pada file `.env`.
+
+7. Jalankan migrasi database jika file migrasi tersedia:
+
+   ```bash
+   php artisan migrate
+   ```
+
+8. Jalankan aplikasi:
+
+   ```bash
+   php artisan serve
+   ```
+
+9. Buka alamat lokal yang ditampilkan di terminal pada browser.
+
+> **Catatan:** Sesuaikan langkah instalasi dengan konfigurasi dan file yang tersedia di repository.
+
+## Batasan Sistem
+
+- Antarmuka dirancang untuk penggunaan desktop.
+- Belum mendukung impor nilai massal dari Excel atau CSV.
+- Nilai yang valid berada pada rentang 0–100.
+- Sistem memiliki tiga role: Admin, Guru, dan Siswa.
+- Data guru dan siswa diinput secara manual oleh Admin.
+- Hanya pengguna yang terdaftar di database yang dapat mengakses sistem.
+- Batas kelulusan adalah nilai akhir minimal 70 untuk setiap mata pelajaran.
+
+## Tujuan Pengembangan
+
+Aplikasi ini dikembangkan untuk meningkatkan efisiensi pengelolaan data akademik dengan menerapkan konsep Pemrograman Terstruktur dan Object-Oriented Programming (OOP).
+
+## Informasi Proyek
+
+- **Nama Aplikasi:** RaporKu
+- **Jenis:** Aplikasi E-Rapor Berbasis Web
+- **Platform:** Web
+- **Kegiatan:** Tugas 1 Pembekalan LSP Skema Programmer — Kelompok 4
+
+---
+
+**RaporKu — Mempermudah Pengelolaan Nilai Akademik secara Digital.**
